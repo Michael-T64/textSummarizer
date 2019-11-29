@@ -22,7 +22,6 @@ topWords(0,_,[]).
 topWords(N,Text,TopWords) :-
     words(Text,AllWords),
     maplist(singular,AllWords,NonPluralWords),
-    % removePlurals(AllWords,NonPluralWords),
     sort(NonPluralWords,SetOfWords),
     exclude(boring,SetOfWords,FilteredSetOfWords), !,
     maplist(count(AllWords),FilteredSetOfWords,Counts), !,
