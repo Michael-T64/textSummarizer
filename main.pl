@@ -1,4 +1,3 @@
-%% -*- Mode: Prolog; -*-
 :- [wn_s]. 
 :- use_module(library(yall)).
 :- use_module(library(pcre)).
