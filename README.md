@@ -15,7 +15,7 @@ according to the people who are close to him — are being the best possible ver
 Messi, and winning as many trophies as possible. Do Messi and Ronaldo inspire each other?
 “Maybe subconsciously in some way they’ve driven each other on,” said Rodgers'.
 ```
-[See the code here.](https://github.com/da-cali/project2/blob/master/main.pl)
+[See the code here.](https://github.com/da-cali/textSummarizer/blob/master/main.pl)
 
 Run it:
   
