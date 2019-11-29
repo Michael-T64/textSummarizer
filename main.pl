@@ -35,7 +35,7 @@ topWords(N,Text,TopWords) :-
 topSentences(0,_,[]).
 topSentences(N,Text,OrderedTopSentences) :-
     sentences(Text,Sentences),
-    maplist(scoreSentence(Text),Sentences,Scores), !,    
+    maplist(scoreSentence(Text),Sentences,Scores), !,
     pairs_keys_values(Pairs,Scores,Sentences),
     sort(1,@>=,Pairs,SortedPairs),
     pairs_values(SortedPairs,SortedSentences),
@@ -83,8 +83,6 @@ sentences(Text,Sentences) :-
     exclude([E]>>member(E,[". ",".\n","\n"]),List,Sentences).
 
 % Singular is the singular of Word if Word is a plural noun.
-singular(Word,P) :- string_concat(P,"s",Word), string_concat(_,C,P), consonant(C), !.
-singular(Word,Word) :- string_concat(P,"ss",Word), string_concat(_,V,P), vowel(V), !.
 singular(Word,Singular) :- 
     string_concat(P,"ies",Word), string_concat(_,C,P), string_concat(P,"y",Singular), consonant(C), !.
 singular(Word,Singular) :-
@@ -93,6 +91,8 @@ singular(Word,Singular) :-
     string_concat(P,"sses",Word), string_concat(_,V,P), string_concat(P,"ss",Singular), vowel(V), !.
 singular(Word,Singular) :- 
     string_concat(P,"shes",Word), string_concat(_,V,P), string_concat(P,"sh",Singular), vowel(V), !.
+singular(Word,P) :- string_concat(P,"s",Word), string_concat(_,C,P), consonant(C), !.
+singular(Word,Word) :- string_concat(P,"ss",Word), string_concat(_,V,P), vowel(V), !.
 singular(Word,Word).
 
 % True if Word is an adjective or an adverb.
@@ -101,8 +101,8 @@ boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,r,_,_), !.
 boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,s,_,_), !.
 
 % True if Letter is a vowel.
-vowel(Letter) :- member(Letter,["a","e","i","o","u","y"]).
+vowel(Letter) :- member(Letter,["a","e","i","o","u","y"]), !.
 
 % True if Letter is a consonant.
 consonant(Letter) :- 
-    member(Letter,["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"]).
+    member(Letter,["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"]), !.

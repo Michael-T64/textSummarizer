@@ -7,13 +7,14 @@ Like this:
 ```bash
 ?- summary(5,'messi.txt',Keywords,Summary).
 Keywords = ["messi", "ronaldo", "being", "goal", "inspire"],
-Summary = 'If Cristiano Ronaldo didn’t exist, would Lionel Messi have to invent him?. As
-appealing as that picture might be, however, it is probably a false one — from Messi’s
-perspective, at least. He might show it in a different way, but Messi is just as competitive
-as Ronaldo. Rather than being a better player than Ronaldo, Messi’s main motivations —
-according to the people who are close to him — are being the best possible version of Lionel
-Messi, and winning as many trophies as possible. Do Messi and Ronaldo inspire each other?
-“Maybe subconsciously in some way they’ve driven each other on,” said Rodgers'.
+Summary = 'If Cristiano Ronaldo didn’t exist, would Lionel Messi have to invent
+him?. As appealing as that picture might be, however, it is probably a false 
+one — from Messi’s perspective, at least. He might show it in a different way, 
+but Messi is just as competitive as Ronaldo. Rather than being a better player 
+than Ronaldo, Messi’s main motivations — according to the people who are close 
+to him — are being the best possible version of Lionel Messi, and winning as 
+many trophies as possible. Do Messi and Ronaldo inspire each other? “Maybe 
+subconsciously in some way they’ve driven each other on,” said Rodgers'.
 ```
 [See the code here.](https://github.com/da-cali/textSummarizer/blob/master/main.pl)
 
