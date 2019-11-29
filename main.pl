@@ -104,5 +104,5 @@ boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,s,_,_), !.
 vowel(Letter) :- member(Letter,["a","e","i","o","u","y"]).
 
 % True if Letter is a consonant.
-consonant(Letter) :- member(Letter,["b","c","d","f","g","h","j","k","l","m"
-                         ,"n","p","q","r","s","t","v","w","x","z"]).
+consonant(Letter) :- 
+    member(Letter,["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"]).
