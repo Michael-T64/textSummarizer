@@ -27,11 +27,15 @@ Run it:
     ```
     cd textSummarizer
     ```
-3. Load main:
+3. Load swipl:
+    ```
+    swipl
+    ```
+4. Load main:
     ```
     [main].
     ```
-4. Get a summary of 5 sentences and 5 keywords:
+5. Get a summary of 5 sentences and 5 keywords:
     ```
     summary(5,'messi.txt',Keywords,Summary).
     ```
