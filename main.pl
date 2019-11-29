@@ -23,7 +23,7 @@ topWords(N,Text,TopWords) :-
     words(Text,AllWords),
     maplist(singular,AllWords,NonPluralWords),
     sort(NonPluralWords,SetOfWords),
-    exclude(boring,SetOfWords,FilteredSetOfWords), !,
+    exclude(boring,SetOfWords,FilteredSetOfWords),
     maplist(count(AllWords),FilteredSetOfWords,Counts), !,
     pairs_keys_values(Pairs,Counts,FilteredSetOfWords),
     sort(1, @>=, Pairs,SortedPairs),
@@ -87,17 +87,17 @@ boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,a,_,_), !.
 boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,r,_,_), !.
 boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,s,_,_), !.
 
-% Singular is the singular of Word if Word is plural noun.
+% Singular is the singular of Word if Word is a plural noun.
 singular(Word,P) :- string_concat(P,"s",Word), string_concat(_,C,P), consonant(C), !.
 singular(Word,Word) :- string_concat(P,"ss",Word), string_concat(_,V,P), vowel(V), !.
-singular(Word,Singular) :-
-    string_concat(P,"sses",Word), string_concat(_,V,P), vowel(V), !, string_concat(P,"ss",Singular).
 singular(Word,Singular) :- 
-    string_concat(P,"ies",Word), string_concat(_,C,P), consonant(C), !, string_concat(P,"y",Singular).
-singular(Word,Singular) :- 
-    string_concat(P,"shes",Word), string_concat(_,V,P), vowel(V), !, string_concat(P,"sh",Singular).
+    string_concat(P,"ies",Word), string_concat(_,C,P), string_concat(P,"y",Singular), consonant(C), !.
 singular(Word,Singular) :-
-    string_concat(P,"es",Word), string_concat(_,C,P), consonant(C), !, string_concat(P,"e",Singular).
+    string_concat(P,"es",Word), string_concat(_,C,P), string_concat(P,"e",Singular), consonant(C), !.
+singular(Word,Singular) :-
+    string_concat(P,"sses",Word), string_concat(_,V,P), string_concat(P,"ss",Singular), vowel(V), !.
+singular(Word,Singular) :- 
+    string_concat(P,"shes",Word), string_concat(_,V,P), string_concat(P,"sh",Singular), vowel(V), !.
 singular(Word,Word).
 
 % True if Letter is a vowel.
