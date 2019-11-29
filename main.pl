@@ -82,11 +82,6 @@ sentences(Text,Sentences) :-
     re_split("(?<!..[A-Z]|(.Mr)|(.Dr)|(.Ms)|(Mrs))\\. |\\n|\\.\\n",Text,List),
     exclude([E]>>member(E,[". ",".\n","\n"]),List,Sentences).
 
-% Word is boring if it is an adjective or an adverb.
-boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,a,_,_), !.
-boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,r,_,_), !.
-boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,s,_,_), !.
-
 % Singular is the singular of Word if Word is a plural noun.
 singular(Word,P) :- string_concat(P,"s",Word), string_concat(_,C,P), consonant(C), !.
 singular(Word,Word) :- string_concat(P,"ss",Word), string_concat(_,V,P), vowel(V), !.
@@ -99,6 +94,11 @@ singular(Word,Singular) :-
 singular(Word,Singular) :- 
     string_concat(P,"shes",Word), string_concat(_,V,P), string_concat(P,"sh",Singular), vowel(V), !.
 singular(Word,Word).
+
+% True if Word is an adjective or an adverb.
+boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,a,_,_), !.
+boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,r,_,_), !.
+boring(Word) :- atom_string(Atom,Word), s(_,_,Atom,s,_,_), !.
 
 % True if Letter is a vowel.
 vowel(Letter) :- member(Letter,["a","e","i","o","u","y"]).
