@@ -21,20 +21,23 @@ Run it:
   
 1. Clone this repository:
     ```
-    git clone https://github.com/da-cali/sentimentClassifier
+    git clone https://github.com/da-cali/textSummarizer
     ```
 2. Open folder:
     ```
-    cd sentimentClassifier
+    cd textSummarizer
     ```
 3. Load main:
     ```
     [main].
     ```
-4. Run GHCi:
+4. Get a summary of 5 sentences and 5 keywords:
     ```
     summary(5,'messi.txt',Keywords,Summary).
     ```
+
+##### For larger texts increase the stack limit: ?- set_prolog_flag(stack_limit, 5 000 000 000). % (5gb)
+ 
 
 ### Authors:
 #### Louise Brett, Dan Castillo, Michael Ton.

@@ -1,5 +1,3 @@
-% ?- set_prolog_flag(stack_limit, 5 000 000 000). % <- for large texts.
-
 :- [wn_s].
 :- use_module(library(yall)).
 :- use_module(library(pcre)).
