@@ -1,4 +1,4 @@
-:- [wn_s]. 
+:- [wn_s]. % WordNet.
 :- use_module(library(yall)).
 :- use_module(library(pcre)).
 :- use_module(library(clpfd)).
@@ -16,15 +16,15 @@ summary(N,File,Keywords,Summary) :-
     topSentences(N,Text,OrderedTopSentences),
     atomic_list_concat(OrderedTopSentences,'. ',Summary).
 
-% TopWords is a list of the N sentences with the highest scores scores of
-% importance in Text. We use WordNet to filter relevant words.
+% TopWords is a list of the N most frequent words in Text after excluding 
+% plurals, adjectives and adverbs.
 topWords(0,_,[]).
 topWords(N,Text,TopWords) :-
     words(Text,AllWords),
     maplist(singular,AllWords,NonPluralWords),
     sort(NonPluralWords,SetOfWords),
     exclude(boring,SetOfWords,FilteredSetOfWords),
-    maplist(count(AllWords),FilteredSetOfWords,Counts), !,
+    maplist(count(NonPluralWords),FilteredSetOfWords,Counts), !,
     pairs_keys_values(Pairs,Counts,FilteredSetOfWords),
     sort(1, @>=, Pairs,SortedPairs),
     pairs_values(SortedPairs,SortedTopWords),
@@ -74,8 +74,7 @@ count([H|T],Word,Count) :- dif(Word,H), count(T,Word,Count).
 % Words is a list of all the words in Text.
 words(Text,Words) :-
     string_lower(Text,LowerCaseText),
-    split_string(LowerCaseText," '’“”()[]?!,;.:_-–—\s\t\n"
-                              ," '’“”()[]?!,;.:_-–—\s\t\n",Words).
+    split_string(LowerCaseText," '’“”()[]?!,;.:_-–—\s\t\n"," '’“”()[]?!,;.:_-–—\s\t\n",Words).
 
 % Sentences is a list of all the sentences in Text.
 sentences(Text,Sentences) :-
